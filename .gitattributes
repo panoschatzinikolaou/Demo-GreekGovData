@@ -1,2 +1,2 @@
-*.SCSS linguist-detectable=false
-*.Less linguist-detectable=false
+*.scss linguist-detectable=false
+*.less linguist-detectable=false
