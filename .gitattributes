@@ -1,0 +1,2 @@
+*.SCSS linguist-detectable=false
+*.Less linguist-detectable=false
