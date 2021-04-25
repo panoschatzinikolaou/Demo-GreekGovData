@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <!-- Chart.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.1.0/chart.min.js" integrity="sha512-RGbSeD/jDcZBWNsI1VCvdjcDULuSfWTtIva2ek5FtteXeSjLfXac4kqkDRHVGf1TwsXCAqPTF7/EYITD0/CTqw==" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -45,15 +46,39 @@
     <footer><i class="fa fa-copyright" aria-hidden="true"></i> Panagiotis Chatzinikolaou <span id="year"></span></footer>
     <script>
         window.onload = function() {
+            let today = new Date();
+            let dd = String(today.getDate()).padStart(2, '0');
+            let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            let yyyy = today.getFullYear();
+            let dateString = mm + '/' + dd + '/' + yyyy;
             document.getElementById("year").innerHTML= new Date().getFullYear();
             let $datepicker1 = $('#fromDate').datepicker({
-                uiLibrary: 'bootstrap4'
+                uiLibrary: 'bootstrap4',
+                value: dateString,
+                disableDates:  function (date) {
+                    // disable future dates
+                    if (date.valueOf() > today.valueOf()) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
             });
             let $datepicker2 = $('#toDate').datepicker({
-                uiLibrary: 'bootstrap4'
+                uiLibrary: 'bootstrap4',
+                value: dateString,
+                disableDates:  function (date) {
+                    // disable future dates
+                    if (date.valueOf() > today.valueOf()) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
             });
+            getGovData();
         }
     </script>
-    <script src="electricity_consumption.js"></script>
+    <script defer src="electricity_consumption.js"></script>
 </body>
 </html>
