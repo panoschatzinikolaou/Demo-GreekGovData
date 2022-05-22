@@ -15,4 +15,4 @@ Each .js file accesses a specific endpoint and manipulates the returned data to 
 
 # HOW TO USE
 When webpage opens, the two datepickers have a default value of current date, and an automatic call to the endpoint is sent. The user can change these values. 
-One should change the external js file referenced in the index.html to hit the appropriate endpoints.
+One should change the external js file referenced in the index.html to use the appropriate endpoints.
